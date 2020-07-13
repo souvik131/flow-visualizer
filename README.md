@@ -9,6 +9,11 @@ A Vue component that intuitively represents Flow in Vue. It is an alternative to
 npm i flow-visualizer
 ```
 
+### Flow Diagram
+
+![alt text](https://raw.githubusercontent.com/souvik131/flow-visualizer/master/flow.png)
+
+
 ### Browser
 
 Include the script file, then install the component with `Vue.use(FlowVisualizer);` e.g.:
