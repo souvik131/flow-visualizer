@@ -37,12 +37,14 @@ class Chart{
 	}
 	draw(){
 		let drawMap={}
-		Object.keys(this.dataSet.traverse).forEach((startPoint)=>{
-			let data=this.dataSet.traverse[startPoint]
-			let sizes = this.sizeDecider(data)
-			let draw=getDraw(startPoint,sizes.width,sizes.height,this.ratio,this.primaryColor,this.activeColor,this.inactiveColor,data,startPoint)
-			drawMap[startPoint]=draw.run()
-		})
+		if(this.dataSet.traverse){
+			Object.keys(this.dataSet.traverse).forEach((startPoint)=>{
+				let data=this.dataSet.traverse[startPoint]
+				let sizes = this.sizeDecider(data)
+				let draw=getDraw(startPoint,sizes.width,sizes.height,this.ratio,this.primaryColor,this.activeColor,this.inactiveColor,data,startPoint)
+				drawMap[startPoint]=draw.run()
+			})
+		}
 		return drawMap
 	}
 }
