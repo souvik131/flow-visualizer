@@ -114,7 +114,10 @@ export default {
           return init.operations.getOrCreateViewElements(this.flowId,this.dataSet,this.primaryColor,this.activeColor,this.inactiveColor)
     },
     getKeys(data){
-      return Object.keys(data)
+      if(data){
+        return Object.keys(data)
+      }
+      return []
     },
     onMouseOverNode(event){
       event.target.setAttributeNS(null, 'r', event.target.getAttributeNS(null,'r')*1.5)

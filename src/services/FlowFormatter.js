@@ -9,67 +9,68 @@ class FlowFormatter{
 	}
 	clone(data){ return JSON.parse(JSON.stringify(data))}
 	restructureData(){
-
-		Object.keys(this.packagedOutput.traverse)
-			.forEach((startPoint)=>{
-			let sortedTraversal=this.packagedOutput.traverse[startPoint].sort((a,b)=>b.length-a.length)
-			let longestTraversal=sortedTraversal[0]
-			let allNodesInLongestTraversal=longestTraversal.map(el=>el.node)
-			let toBeAdded=[]
-			for(let i=0;i<sortedTraversal.length;i++){
-				let el=sortedTraversal[i]
-				if(i!=0){
-					el.forEach(prop=>{
-						if(!allNodesInLongestTraversal.includes(prop.node)&&!toBeAdded.map(el=>el.node).includes(prop.node)){
-							toBeAdded.push(prop)
-						}
-					})
-				}
-			}
-			toBeAdded.forEach(el=>{
-				sortedTraversal[0].push(el)
-			})
-
-			let traversalContainer=new Array(longestTraversal.length);
-			sortedTraversal.forEach((el,i)=>{
-				if(i==0){
-					let prevNode=startPoint
-					el.map((prop,j)=>{
-						prop.prevNode=prevNode
-						traversalContainer[j]=[prop]
-						prevNode=prop.node
-
-					})
-				}
-				else{
-					
-					let prevPropNode=startPoint
-					el.map((prop)=>{
-						for(let i=0;i<traversalContainer.length;i++){
-							let container = traversalContainer[i]
-							let currentNode=container[0].node
-							if(currentNode==prop.node){
-								let available=false
-								for(let j=0;j<container.length;j++){
-									let value=container[j]
-									if(value.prevNode==prevPropNode){
-										available=true
-										break
-									}
-								}
-								if(!available){
-									prop.prevNode=prevPropNode
-									container.push(prop)
-								}
-								break
+		if(this.packagedOutput.traverse){
+			Object.keys(this.packagedOutput.traverse)
+				.forEach((startPoint)=>{
+				let sortedTraversal=this.packagedOutput.traverse[startPoint].sort((a,b)=>b.length-a.length)
+				let longestTraversal=sortedTraversal[0]
+				let allNodesInLongestTraversal=longestTraversal.map(el=>el.node)
+				let toBeAdded=[]
+				for(let i=0;i<sortedTraversal.length;i++){
+					let el=sortedTraversal[i]
+					if(i!=0){
+						el.forEach(prop=>{
+							if(!allNodesInLongestTraversal.includes(prop.node)&&!toBeAdded.map(el=>el.node).includes(prop.node)){
+								toBeAdded.push(prop)
 							}
-						}
-						prevPropNode=prop.node
-					})
+						})
+					}
 				}
+				toBeAdded.forEach(el=>{
+					sortedTraversal[0].push(el)
+				})
+
+				let traversalContainer=new Array(longestTraversal.length);
+				sortedTraversal.forEach((el,i)=>{
+					if(i==0){
+						let prevNode=startPoint
+						el.map((prop,j)=>{
+							prop.prevNode=prevNode
+							traversalContainer[j]=[prop]
+							prevNode=prop.node
+
+						})
+					}
+					else{
+						
+						let prevPropNode=startPoint
+						el.map((prop)=>{
+							for(let i=0;i<traversalContainer.length;i++){
+								let container = traversalContainer[i]
+								let currentNode=container[0].node
+								if(currentNode==prop.node){
+									let available=false
+									for(let j=0;j<container.length;j++){
+										let value=container[j]
+										if(value.prevNode==prevPropNode){
+											available=true
+											break
+										}
+									}
+									if(!available){
+										prop.prevNode=prevPropNode
+										container.push(prop)
+									}
+									break
+								}
+							}
+							prevPropNode=prop.node
+						})
+					}
+				})
+				this.packagedOutput.traverse[startPoint]=traversalContainer
 			})
-			this.packagedOutput.traverse[startPoint]=traversalContainer
-		})
+		}
 	
 	}
 	run(){
