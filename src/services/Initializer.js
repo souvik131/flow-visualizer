@@ -19,16 +19,14 @@ let getNewInitializer =(data,primaryColor,activeColor,inactiveColor)=>{
     
     return new Initializer(data,primaryColor,activeColor,inactiveColor)
 }
-let getOrCreateViewElements=(id,data,primaryColor,activeColor,inactiveColor)=>{
-    if(!initializerObjects[id]){
-        initializerObjects[id]= new Initializer(data,primaryColor,activeColor,inactiveColor)
-    }
+let getViewElements=(id,data,primaryColor,activeColor,inactiveColor)=>{
+    initializerObjects[id]= new Initializer(data,primaryColor,activeColor,inactiveColor)
     return initializerObjects[id].getViewElements()
 }
 
 export let operations = {
     getNewInitializer:getNewInitializer,
-    getOrCreateViewElements:getOrCreateViewElements
+    getViewElements:getViewElements
 
 }
 

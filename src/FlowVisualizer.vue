@@ -111,7 +111,7 @@ export default {
   },
   methods:{
     getData(){
-          return init.operations.getOrCreateViewElements(this.flowId,this.dataSet,this.primaryColor,this.activeColor,this.inactiveColor)
+          return init.operations.getViewElements(this.flowId,this.dataSet,this.primaryColor,this.activeColor,this.inactiveColor)
     },
     getKeys(data){
       if(data){
