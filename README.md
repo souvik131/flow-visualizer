@@ -6,7 +6,7 @@ A Vue component that intuitively represents Flow in Vue. It is an alternative to
 ## Installation
 
 ```js
-npm i --save-dev flow-visualizer
+npm i flow-visualizer
 ```
 
 ### Browser
