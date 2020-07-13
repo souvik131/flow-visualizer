@@ -176,7 +176,7 @@ class Draw{
 			text['fill']=this.primaryColor;
 			text["text"]=  node
 			if(text.length>11){
-				text.splice(0,8)+"..."
+				text=text.substring(0,8)+"..."
 			}
 			this.element.data.allNodeTexts.push(text)
 
