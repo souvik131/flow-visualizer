@@ -120,7 +120,6 @@ export default {
       return []
     },
     onMouseOverNode(event){
-      console.log("over node")
       event.target.setAttributeNS(null, 'r', event.target.getAttributeNS(null,'r')*1.5)
       let node=event.target.getAttribute("class").replace(/node-svg|-/gi,"").trim()
       let allArcs = this.$refs["arc-svg arc-svg-"+node]||[]
@@ -140,13 +139,11 @@ export default {
       }
     },
     onMouseLeaveNode(event){
-      console.log("leave node")
       event.target.setAttributeNS(null, 'r', event.target.getAttributeNS(null,'r')/1.5)
       let node=event.target.getAttribute("class").replace(/node-svg|-/gi,"").trim()
       let allArcs = this.$refs["arc-svg arc-svg-"+node]||[]
       let allArcTexts = this.$refs["arc-text-svg arc-text-svg-"+node]||[]
       let allArcTextBgs = this.$refs["arc-text-bg-svg arc-text-bg-svg-"+node]||[]
-      console.log(node,allArcTexts,allArcTextBgs,allArcTextBgs)
       for(let j=0;j<allArcs.length;j++){
         let lineWidth=allArcs[j].getAttributeNS(null, 'stroke-width')
         allArcs[j].setAttributeNS(null, 'stroke',this.inactiveColor);
@@ -160,38 +157,48 @@ export default {
       }
     },
     onMouseOverEdge(event){
-            console.log("over edge")
             let el=event.target
 						let lineWidth=el.getAttributeNS(null, 'stroke-width')
             el.setAttributeNS(null, 'stroke-width',lineWidth*2.5)
             el.setAttributeNS(null, 'stroke',this.activeColor);
+            let nodeClasses = event.target.getAttribute("class")
 						let node=event.target.getAttribute("class").replace(/arc-svg-/gi,"").split(/\s/gi)[1].trim()
             let allArcTexts = this.$refs["arc-text-svg arc-text-svg-"+node]||[]
             let allArcTextBgs = this.$refs["arc-text-bg-svg arc-text-bg-svg-"+node]||[]
-            console.log(node,allArcTexts,allArcTextBgs)
             for(let j=0;j<allArcTexts.length;j++){
-              allArcTexts[j].style.display="block"
+                console.log(nodeClasses,nodeClasses.replace(/arc-svg/gi,"arc-text-svg"),allArcTexts[j].getAttribute("class"))
+                if(nodeClasses.replace(/arc-svg/gi,"arc-text-svg")==allArcTexts[j].getAttribute("class")){
+                  allArcTexts[j].style.display="block"
+                }
             }
             for(let j=0;j<allArcTextBgs.length;j++){
-              allArcTextBgs[j].style.display="block"
+              console.log(nodeClasses,nodeClasses.replace(/arc-svg/gi,"arc-text-bg-svg"),allArcTextBgs[j].getAttribute("class"))
+              if(nodeClasses.replace(/arc-svg/gi,"arc-text-bg-svg")==allArcTextBgs[j].getAttribute("class")){
+                allArcTextBgs[j].style.display="block"
+              }
             }
 
     },
     onMouseLeaveEdge(event){
-            console.log("leave edge")
             let el=event.target
             let lineWidth=el.getAttributeNS(null, 'stroke-width')
             el.setAttributeNS(null, 'stroke-width',lineWidth/2.5)
             el.setAttributeNS(null, 'stroke',this.inactiveColor);
+            let nodeClasses = event.target.getAttribute("class")
             let node=event.target.getAttribute("class").replace(/arc-svg-/gi,"").split(/\s/gi)[1].trim()
             let allArcTexts = this.$refs["arc-text-svg arc-text-svg-"+node]||[]
             let allArcTextBgs = this.$refs["arc-text-bg-svg arc-text-bg-svg-"+node]||[]
-            console.log(node,allArcTexts,allArcTextBgs)
             for(let j=0;j<allArcTexts.length;j++){
-              allArcTexts[j].style.display="none"
+              console.log(nodeClasses,nodeClasses.replace(/arc-svg/gi,"arc-text-svg"),allArcTexts[j].getAttribute("class"))
+              if(nodeClasses.replace(/arc-svg/gi,"arc-text-svg")==allArcTexts[j].getAttribute("class")){
+                allArcTexts[j].style.display="none"
+              }
             }
             for(let j=0;j<allArcTextBgs.length;j++){
-              allArcTextBgs[j].style.display="none"
+              console.log(nodeClasses,nodeClasses.replace(/arc-svg/gi,"arc-text-bg-svg"),allArcTextBgs[j].getAttribute("class"))
+              if(nodeClasses.replace(/arc-svg/gi,"arc-text-bg-svg")==allArcTextBgs[j].getAttribute("class")){
+                allArcTextBgs[j].style.display="none"
+              }
             }
     }
   }
