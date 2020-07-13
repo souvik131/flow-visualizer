@@ -167,7 +167,7 @@ class Draw{
 			this.element.data.allNodes.push(el)	
 
 			let text = {}
-			let nodeDisplay=text
+			let nodeDisplay=node
 			if(nodeDisplay.length>11){
 				nodeDisplay=nodeDisplay.substring(0,8)+"..."
 			}
