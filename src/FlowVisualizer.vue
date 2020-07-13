@@ -166,13 +166,11 @@ export default {
             let allArcTexts = this.$refs["arc-text-svg arc-text-svg-"+node]||[]
             let allArcTextBgs = this.$refs["arc-text-bg-svg arc-text-bg-svg-"+node]||[]
             for(let j=0;j<allArcTexts.length;j++){
-                console.log(nodeClasses,nodeClasses.replace(/arc-svg/gi,"arc-text-svg"),allArcTexts[j].getAttribute("class"))
                 if(nodeClasses.replace(/arc-svg/gi,"arc-text-svg")==allArcTexts[j].getAttribute("class")){
                   allArcTexts[j].style.display="block"
                 }
             }
             for(let j=0;j<allArcTextBgs.length;j++){
-              console.log(nodeClasses,nodeClasses.replace(/arc-svg/gi,"arc-text-bg-svg"),allArcTextBgs[j].getAttribute("class"))
               if(nodeClasses.replace(/arc-svg/gi,"arc-text-bg-svg")==allArcTextBgs[j].getAttribute("class")){
                 allArcTextBgs[j].style.display="block"
               }
@@ -189,13 +187,11 @@ export default {
             let allArcTexts = this.$refs["arc-text-svg arc-text-svg-"+node]||[]
             let allArcTextBgs = this.$refs["arc-text-bg-svg arc-text-bg-svg-"+node]||[]
             for(let j=0;j<allArcTexts.length;j++){
-              console.log(nodeClasses,nodeClasses.replace(/arc-svg/gi,"arc-text-svg"),allArcTexts[j].getAttribute("class"))
               if(nodeClasses.replace(/arc-svg/gi,"arc-text-svg")==allArcTexts[j].getAttribute("class")){
                 allArcTexts[j].style.display="none"
               }
             }
             for(let j=0;j<allArcTextBgs.length;j++){
-              console.log(nodeClasses,nodeClasses.replace(/arc-svg/gi,"arc-text-bg-svg"),allArcTextBgs[j].getAttribute("class"))
               if(nodeClasses.replace(/arc-svg/gi,"arc-text-bg-svg")==allArcTextBgs[j].getAttribute("class")){
                 allArcTextBgs[j].style.display="none"
               }
