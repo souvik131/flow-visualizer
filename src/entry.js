@@ -4,7 +4,7 @@ import FlowVisualizer from './FlowVisualizer.vue'
 function install(Vue) {
     if (install.installed) return
     install.installed = true
-    Vue.component('FlowVisualizer', component)
+    Vue.component('flow-visualizer', FlowVisualizer)
   }
   
   const plugin = {
@@ -22,6 +22,6 @@ function install(Vue) {
     GlobalVue.use(plugin)
   }
   
-  component.install = install
+  FlowVisualizer.install = install
 
-  export default component
+  export default FlowVisualizer
