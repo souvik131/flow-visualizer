@@ -110,7 +110,7 @@ export default {
     }
   },
   methods:{
-    getData(id){
+    getData(){
           return init.operations.getOrCreateViewElements(this.flowId,this.dataSet,this.primaryColor,this.activeColor,this.inactiveColor)
     },
     getKeys(data){
@@ -121,11 +121,10 @@ export default {
     },
     onMouseOverNode(event){
       event.target.setAttributeNS(null, 'r', event.target.getAttributeNS(null,'r')*1.5)
-      let node=event.target.getAttribute("class").replace(/node-svg|-/gi,"").trim()
+      let node=event.target.getAttribute("class").replace(/node-svg-|node-svg/gi,"").trim()
       let allArcs = this.$refs["arc-svg arc-svg-"+node]||[]
       let allArcTexts = this.$refs["arc-text-svg arc-text-svg-"+node]||[]
       let allArcTextBgs = this.$refs["arc-text-bg-svg arc-text-bg-svg-"+node]||[]
-      console.log(node,allArcTexts,allArcTextBgs,allArcTextBgs)
       for(let j=0;j<allArcs.length;j++){
         let lineWidth=allArcs[j].getAttributeNS(null, 'stroke-width')
         allArcs[j].setAttributeNS(null, 'stroke',this.activeColor);
@@ -140,7 +139,7 @@ export default {
     },
     onMouseLeaveNode(event){
       event.target.setAttributeNS(null, 'r', event.target.getAttributeNS(null,'r')/1.5)
-      let node=event.target.getAttribute("class").replace(/node-svg|-/gi,"").trim()
+      let node=event.target.getAttribute("class").replace(/node-svg-|node-svg/gi,"").trim()
       let allArcs = this.$refs["arc-svg arc-svg-"+node]||[]
       let allArcTexts = this.$refs["arc-text-svg arc-text-svg-"+node]||[]
       let allArcTextBgs = this.$refs["arc-text-bg-svg arc-text-bg-svg-"+node]||[]
