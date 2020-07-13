@@ -166,18 +166,18 @@ class Draw{
 			el['fill']=this.primaryColor;
 			this.element.data.allNodes.push(el)	
 
-
 			let text = {}
+			let nodeDisplay=text
+			if(nodeDisplay.length>11){
+				nodeDisplay=nodeDisplay.substring(0,8)+"..."
+			}
 			text["type"]='text';  
 			text['class']="text-svg text-svg-"+node; 
 			text['ref']="text-svg text-svg-"+node; 
 			text['x']=x-node.length*6*0.5;
 			text['y']=y+this.eachNodeHeight+25;
 			text['fill']=this.primaryColor;
-			text["text"]=  node
-			if(text.length>11){
-				text=text.substring(0,8)+"..."
-			}
+			text["text"]=  nodeDisplay
 			this.element.data.allNodeTexts.push(text)
 
 		}
