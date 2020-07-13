@@ -9,7 +9,7 @@ class Chart{
 		this.dataSet=dataSet
 		this.ratio=0.6
 	}
-	clone = (data)=>JSON.parse(JSON.stringify(data))
+	clone (data){return JSON.parse(JSON.stringify(data))}
 	sizeDecider(data){
 		let maxSize=0
 		let map={}

@@ -7,7 +7,7 @@ class FlowFormatter{
 		this.packagedOutput={}
 		this.workData=this.clone(journeys).filter(el=>el.from!=el.to)
 	}
-	clone = (data)=>JSON.parse(JSON.stringify(data))
+	clone(data){ return JSON.parse(JSON.stringify(data))}
 	restructureData(){
 
 		Object.keys(this.packagedOutput.traverse)
@@ -45,11 +45,13 @@ class FlowFormatter{
 					
 					let prevPropNode=startPoint
 					el.map((prop)=>{
-						for(let container of traversalContainer){
+						for(let i=0;i<traversalContainer.length;i++){
+							let container = traversalContainer[i]
 							let currentNode=container[0].node
 							if(currentNode==prop.node){
 								let available=false
-								for(let value of container){
+								for(let j=0;j<container.length;j++){
+									let value=container[j]
 									if(value.prevNode==prevPropNode){
 										available=true
 										break

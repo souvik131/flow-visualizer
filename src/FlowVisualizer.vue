@@ -69,20 +69,12 @@
 
         </svg>
     </div>
-  <!-- </div> -->
-  
- <!-- </div> -->
-	<!-- this.allArcs.forEach(el=>this.element.appendChild(el))
-		this.allNodes.forEach(el=>this.element.appendChild(el))
-		this.allNodeTexts.forEach(el=>this.element.appendChild(el))
-		this.allArcTextBackgrounds.forEach(el=>this.element.appendChild(el))
-		this.allArcTexts.forEach(el=>this.element.appendChild(el)) -->
 </div>
 
 </template>
 
 <script>
-import * as init from "./../services/Initializer"
+import * as init from "./services/Initializer"
 export default {
   name: 'FlowVisualizer',
   props: {
@@ -121,7 +113,7 @@ export default {
     getKeys(data){
       return Object.keys(data)
     },
-    async onMouseOverNode(event){
+    onMouseOverNode(event){
       event.target.setAttributeNS(null, 'r', event.target.getAttributeNS(null,'r')*1.5)
       let node=event.target.getAttribute("class").replace(/node-svg|-/gi,"").trim()
       let allArcs = this.$refs["arc-svg arc-svg-"+node]||[]
@@ -139,7 +131,7 @@ export default {
         allArcTextBgs[j].style.display="block"
       }
     },
-    async onMouseLeaveNode(event){
+    onMouseLeaveNode(event){
       event.target.setAttributeNS(null, 'r', event.target.getAttributeNS(null,'r')/1.5)
       let node=event.target.getAttribute("class").replace(/node-svg|-/gi,"").trim()
       let allArcs = this.$refs["arc-svg arc-svg-"+node]||[]
@@ -157,7 +149,7 @@ export default {
         allArcTextBgs[j].style.display="none"
       }
     },
-    async onMouseOverEdge(event){
+    onMouseOverEdge(event){
             let el=event.target
 						let lineWidth=el.getAttributeNS(null, 'stroke-width')
             el.setAttributeNS(null, 'stroke-width',lineWidth*2.5)
@@ -173,7 +165,7 @@ export default {
             }
 
     },
-    async onMouseLeaveEdge(){
+    onMouseLeaveEdge(){
             let el=event.target
             let lineWidth=el.getAttributeNS(null, 'stroke-width')
             el.setAttributeNS(null, 'stroke-width',lineWidth/2.5)

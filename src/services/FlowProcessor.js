@@ -19,9 +19,9 @@ class FlowProcessor{
 
 
 
-	clone = (data)=>JSON.parse(JSON.stringify(data))
+	clone(data){return JSON.parse(JSON.stringify(data))}
 
-	saveDatapoints=(traverse)=>{
+	saveDatapoints(traverse){
 		if(traverse.length>0){
 			let lastNode=this.startPoint
 			traverse=traverse.map(el=>{
@@ -37,12 +37,12 @@ class FlowProcessor{
 		}
 	}
 
-	start=()=>{
+	start(){
 		this.recursivelyCompute({},this.startPoint,[this.startPoint],[],this.dataSet.trees[this.startPoint].next)
 		return this
 	}
 
-	recursivelyCompute=(currentNode,node,pathArray,traverse,currentTree)=>{
+	recursivelyCompute(currentNode,node,pathArray,traverse,currentTree){
 		if(this.clubbedNodes[node]){
 			currentNode[node]=this.clone(this.clubbedNodes[node])
 			currentNode[node].next={}
