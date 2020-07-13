@@ -47,7 +47,7 @@ Use this template where you want to represent the flow.
    </flow-visualizer>
 ```
 
-Add data for depeneding dataSet in script.
+Add data for depending dataSet in script.
 
 ```js
 export default {
