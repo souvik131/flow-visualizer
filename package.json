@@ -1,6 +1,6 @@
 {
   "name": "flow-visualizer",
-  "version": "0.1.23",
+  "version": "0.1.24",
   "main": "dist/flow-visualizer.umd.js",
   "module": "dist/flow-visualizer.esm.js",
   "unpkg": "dist/flow-visualizer.min.js",
