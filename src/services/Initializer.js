@@ -23,7 +23,7 @@ let getOrCreateViewElements=(id,data,primaryColor,activeColor,inactiveColor)=>{
     if(!initializerObjects[id]){
         initializerObjects[id]= new Initializer(data,primaryColor,activeColor,inactiveColor)
     }
-    return initializerObject[id].getViewElements()
+    return initializerObjects[id].getViewElements()
 }
 
 export let operations = {
