@@ -171,7 +171,7 @@ export default {
             }
 
     },
-    onMouseLeaveEdge(){
+    onMouseLeaveEdge(event){
             let el=event.target
             let lineWidth=el.getAttributeNS(null, 'stroke-width')
             el.setAttributeNS(null, 'stroke-width',lineWidth/2.5)
