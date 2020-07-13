@@ -47,7 +47,7 @@ class FlowProcessor{
 			currentNode[node]=this.clone(this.clubbedNodes[node])
 			currentNode[node].next={}
 			this.clubbedNodes[node].forEach(nextnode=>{
-				if(!pathArray.includes(nextnode)){
+				if(!pathArray.includes(nextnode.to)){
 					let tempArray=this.clone(pathArray)
 					tempArray.push(nextnode.to)
 					let tempTraverse=this.clone(traverse)
