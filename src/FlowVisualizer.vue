@@ -78,6 +78,11 @@ import * as init from "./services/Initializer"
 export default {
   name: 'FlowVisualizer',
   props: {
+    flowId: {
+      type: String,
+      required: true,
+      default: () => "default-flow"
+    },
     dataSet: {
       type: Array,
       required: true,
@@ -101,14 +106,12 @@ export default {
   },
   data(){
     return {
-      drawData:this.getData(),
-      path:`<circle cx="150.00000000000003" cy="188.5333333333333" r="14.285714285714286" class="text-svg" height="14.285714285714286" width="14.285714285714286" fill="#333"></circle>`
+      drawData:this.getData()
     }
   },
   methods:{
-    getData(){
-          return init.operations.getOrCreateViewElements(this.dataSet,this.primaryColor,this.activeColor,this.inactiveColor)
-      
+    getData(id){
+          return init.operations.getOrCreateViewElements(this.flowId,this.dataSet,this.primaryColor,this.activeColor,this.inactiveColor)
     },
     getKeys(data){
       return Object.keys(data)

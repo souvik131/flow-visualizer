@@ -13,17 +13,17 @@ class Initializer{
     }
 }
 
-let initializerObject
+let initializerObjects={}
 
 let getNewInitializer =(data,primaryColor,activeColor,inactiveColor)=>{
     
     return new Initializer(data,primaryColor,activeColor,inactiveColor)
 }
-let getOrCreateViewElements=(data,primaryColor,activeColor,inactiveColor)=>{
-    if(!initializerObject){
-        initializerObject= new Initializer(data,primaryColor,activeColor,inactiveColor)
+let getOrCreateViewElements=(id,data,primaryColor,activeColor,inactiveColor)=>{
+    if(!initializerObjects[id]){
+        initializerObjects[id]= new Initializer(data,primaryColor,activeColor,inactiveColor)
     }
-    return initializerObject.getViewElements()
+    return initializerObject[id].getViewElements()
 }
 
 export let operations = {

@@ -40,6 +40,7 @@ Use this template where you want to represent the flow.
 
 ```html
 <flow-visualizer 
+   flowId="buyJourney"
    :dataSet=dataSet
    primarColor=#4f4f4f
    activeColor=#fcbf2d
