@@ -41,10 +41,10 @@ Use this template where you want to represent the flow.
 ```html
 <flow-visualizer 
    flowId="buyJourney"
-   :dataSet=dataSet
-   primarColor=#4f4f4f
+   primaryColor=#4f4f4f
    activeColor=#fcbf2d
-   inactiveColor=#f4e642>
+   inactiveColor=#f4e642
+   :dataSet=dataSet>
    </flow-visualizer>
 ```
 
