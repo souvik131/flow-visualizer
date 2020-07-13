@@ -165,7 +165,7 @@ export default {
 						let lineWidth=el.getAttributeNS(null, 'stroke-width')
             el.setAttributeNS(null, 'stroke-width',lineWidth*2.5)
             el.setAttributeNS(null, 'stroke',this.activeColor);
-						let node=event.target.getAttribute("class").replace(/arc-svg/gi,"").split("next-")[1].trim()
+						let node=event.target.getAttribute("class").replace(/arc-svg/gi,"").split(/\s/gi)[0].trim()
             let allArcTexts = this.$refs["arc-text-svg arc-text-svg-"+node]||[]
             let allArcTextBgs = this.$refs["arc-text-bg-svg arc-text-bg-svg-"+node]||[]
             console.log(node,allArcTexts,allArcTextBgs)
@@ -183,7 +183,7 @@ export default {
             let lineWidth=el.getAttributeNS(null, 'stroke-width')
             el.setAttributeNS(null, 'stroke-width',lineWidth/2.5)
             el.setAttributeNS(null, 'stroke',this.inactiveColor);
-            let node=event.target.getAttribute("class").replace(/arc-svg/gi,"").split("next-")[1].trim()
+            let node=event.target.getAttribute("class").replace(/arc-svg-/gi,"").split(/\s/gi)[0].trim()
             let allArcTexts = this.$refs["arc-text-svg arc-text-svg-"+node]||[]
             let allArcTextBgs = this.$refs["arc-text-bg-svg arc-text-bg-svg-"+node]||[]
             console.log(node,allArcTexts,allArcTextBgs)
