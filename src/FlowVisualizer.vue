@@ -178,7 +178,7 @@ export default {
 
     },
     onMouseLeaveEdge(event){
-            console.log("leave node")
+            console.log("leave edge")
             let el=event.target
             let lineWidth=el.getAttributeNS(null, 'stroke-width')
             el.setAttributeNS(null, 'stroke-width',lineWidth/2.5)
