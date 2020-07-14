@@ -1,11 +1,12 @@
 
 
-import { getFlowProcessor } from "./FlowProcessor";
+import { flowProcessor } from "./FlowProcessor";
 
 class FlowFormatter{
-	constructor(journeys){
+	setData(journeys){
 		this.packagedOutput={}
 		this.workData=this.clone(journeys).filter(el=>el.from!=el.to)
+		return this
 	}
 	clone(data){ return JSON.parse(JSON.stringify(data))}
 	restructureData(){
@@ -93,13 +94,12 @@ class FlowFormatter{
 		}
 		startingPoints
 		.forEach((startPoint)=>{
-			let processor = getFlowProcessor(startPoint,clubbedNodes)
+			let processor = flowProcessor.setData(startPoint,clubbedNodes)
 			this.packagedOutput=processor.start().dataSet
 		})
+		console.log(this.packagedOutput)
 		this.restructureData()
 		return this
 	}
 }
-export let getFlowFormatter =(journeys)=>{
-    return new  FlowFormatter(journeys)
-}
+export let flowFormatter = new  FlowFormatter()

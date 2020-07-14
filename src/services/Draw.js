@@ -1,5 +1,5 @@
 class Draw{
-	constructor(id,width,height,ratio,primaryColor,activeColor,inactiveColor,data,startPoint){
+	setData(id,width,height,ratio,primaryColor,activeColor,inactiveColor,data,startPoint){
 		this.element = {
             data:{}
         }
@@ -15,6 +15,7 @@ class Draw{
 		this.primaryColor=primaryColor
 		this.activeColor=activeColor
 		this.inactiveColor=inactiveColor
+		return this
 	}
 
 	
@@ -166,18 +167,15 @@ class Draw{
 			el['fill']=this.primaryColor;
 			this.element.data.allNodes.push(el)	
 
+
 			let text = {}
-			let nodeDisplay=node
-			if(nodeDisplay.length>11){
-				nodeDisplay=nodeDisplay.substring(0,8)+"..."
-			}
 			text["type"]='text';  
 			text['class']="text-svg text-svg-"+node; 
 			text['ref']="text-svg text-svg-"+node; 
 			text['x']=x-node.length*6*0.5;
 			text['y']=y+this.eachNodeHeight+25;
 			text['fill']=this.primaryColor;
-			text["text"]=  nodeDisplay
+			text["text"]=  node
 			this.element.data.allNodeTexts.push(text)
 
 		}
@@ -201,6 +199,4 @@ class Draw{
 }
 
 
-export let getDraw =(id,width,height,ratio,primaryColor,activeColor,inactiveColor,data,startPoint)=>{
-    return new  Draw(id,width,height,ratio,primaryColor,activeColor,inactiveColor,data,startPoint)
-}
+export let draw =new  Draw()

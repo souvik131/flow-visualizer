@@ -1,33 +1,28 @@
-import { getFlowFormatter } from "./FlowFormatter";
-import { getChart} from "./Chart"
+import { flowFormatter } from "./FlowFormatter";
+import { chart} from "./Chart"
 
 
 class Initializer{
-    constructor(data,primaryColor,activeColor,inactiveColor){
-        let rawData=getFlowFormatter(data).run().packagedOutput
-        this.drawElements=getChart(rawData,primaryColor,activeColor,inactiveColor).draw()   
+    constructor(){
+        this.data={
+            key:{}
+        }
+        this.data.key.startPoints=[]
+        this.data.key.dataPoints=[]
     }
 
-    getViewElements(){
-        return this.drawElements
+    setData(data,primaryColor,activeColor,inactiveColor){
+        let temp=chart.setData(flowFormatter.setData(data).run().packagedOutput,primaryColor,activeColor,inactiveColor).draw()
+        this.data.key.startPoints=temp.startPoints
+        this.data.key.dataPoints=temp.dataPoints
+        return this
+    }
+    getData(){
+        return this.data.key
     }
 }
 
-let initializerObjects={}
 
-let getNewInitializer =(data,primaryColor,activeColor,inactiveColor)=>{
-    
-    return new Initializer(data,primaryColor,activeColor,inactiveColor)
-}
-let getViewElements=(id,data,primaryColor,activeColor,inactiveColor)=>{
-    initializerObjects[id]= new Initializer(data,primaryColor,activeColor,inactiveColor)
-    return initializerObjects[id].getViewElements()
-}
-
-export let operations = {
-    getNewInitializer:getNewInitializer,
-    getViewElements:getViewElements
-
-}
+export let init = new Initializer()
 
 

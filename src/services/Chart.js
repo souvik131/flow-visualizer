@@ -1,13 +1,14 @@
 
-import { getDraw } from "./Draw";
+import { draw } from "./Draw";
 
 class Chart{
-	constructor(dataSet,primaryColor,activeColor,inactiveColor){
+	setData(dataSet,primaryColor,activeColor,inactiveColor){
 		this.primaryColor=primaryColor
 		this.activeColor=activeColor
 		this.inactiveColor=inactiveColor
 		this.dataSet=dataSet
 		this.ratio=0.6
+		return this
 	}
 	clone (data){return JSON.parse(JSON.stringify(data))}
 	sizeDecider(data){
@@ -36,22 +37,26 @@ class Chart{
         }
 	}
 	draw(){
-		let drawMap={}
+		let startPoints=[]
+		let dataPoints=[]
 		if(this.dataSet.traverse){
 			Object.keys(this.dataSet.traverse).forEach((startPoint)=>{
 				let data=this.dataSet.traverse[startPoint]
 				let sizes = this.sizeDecider(data)
-				let draw=getDraw(startPoint,sizes.width,sizes.height,this.ratio,this.primaryColor,this.activeColor,this.inactiveColor,data,startPoint)
-				drawMap[startPoint]=draw.run()
+				dataPoints.push(draw
+					.setData(startPoint,sizes.width,sizes.height,this.ratio,this.primaryColor,this.activeColor,this.inactiveColor,data,startPoint)
+					.run())
+				startPoints.push(startPoint)
 			})
 		}
-		return drawMap
+		return {
+			startPoints:startPoints,
+			dataPoints:dataPoints
+		}
 	}
 }
 
-export let getChart=(rawData,primaryColor,activeColor,inactiveColor)=>{
-    return new  Chart(rawData,primaryColor,activeColor,inactiveColor)
-}
+export let chart = new  Chart()
 
 
 

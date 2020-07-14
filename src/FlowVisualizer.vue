@@ -1,10 +1,11 @@
 <template>
 
 <div >
-    <div v-for="startPoint in getKeys(drawData)" :key="startPoint" >
-        <svg :id=startPoint :height=drawData[startPoint].height :width=drawData[startPoint].width >
+  
+    <div v-for="(dataPoint,idx) in drawData.dataPoints" :key="idx+'flow-visualizer'" >
+         <svg :height=drawData.dataPoints[idx].height :width=drawData.dataPoints[idx].width >
 
-          <path v-for="(arc,i) in drawData[startPoint].data.allArcs" 
+          <path v-for="(arc,i) in drawData.dataPoints[idx].data.allArcs" 
           :key="i+'-arc'" 
           :fill=arc.fill 
           :stroke=arc.stroke 
@@ -18,7 +19,7 @@
           </path>
            
           
-          <circle  v-for="(node,j) in drawData[startPoint].data.allNodes"
+          <circle  v-for="(node,j) in drawData.dataPoints[idx].data.allNodes"
           :key="j+'-node'"
           :cx=node.cx 
           :cy=node.cy 
@@ -32,7 +33,7 @@
           v-on:mouseleave=onMouseLeaveNode>
           </circle>
 
-          <text  v-for="(nodeText,k) in drawData[startPoint].data.allNodeTexts"
+          <text  v-for="(nodeText,k) in drawData.dataPoints[idx].data.allNodeTexts"
           :key="k+'-nodeText'" 
           :x=nodeText.x
           :y=nodeText.y
@@ -42,7 +43,7 @@
           {{nodeText.text}}
           </text>
 
-          <rect  v-for="(arcTextBg,l) in drawData[startPoint].data.allArcTextBackgrounds"
+          <rect  v-for="(arcTextBg,l) in drawData.dataPoints[idx].data.allArcTextBackgrounds"
           :key="l+'-arcTextBg'"
           :x=arcTextBg.x
           :y=arcTextBg.y
@@ -56,7 +57,7 @@
           :class=arcTextBg.class >
           </rect> 
 
-          <text  v-for="(arcText,m) in drawData[startPoint].data.allArcTexts"
+          <text  v-for="(arcText,m) in drawData.dataPoints[idx].data.allArcTexts"
           :key="m+'-arcText'" 
           :x=arcText.x
           :y=arcText.y
@@ -66,23 +67,19 @@
           {{arcText.text}}
           
           </text>
-
-        </svg>
-    </div>
+        </svg>  
+    </div> 
 </div>
 
 </template>
 
 <script>
-import * as init from "./services/Initializer"
+import {init} from "./services/Initializer"
+
+
 export default {
   name: 'FlowVisualizer',
   props: {
-    flowId: {
-      type: String,
-      required: true,
-      default: () => "default-flow"
-    },
     dataSet: {
       type: Array,
       required: true,
@@ -104,21 +101,12 @@ export default {
       default: () => "#f4e642"
     }
   },
-  data(){
-    return {
-      drawData:this.getData()
-    }
+  computed:{
+      drawData(){
+        return init.setData(this.dataSet,this.primaryColor,this.activeColor,this.inactiveColor).getData()
+      }
   },
   methods:{
-    getData(){
-          return init.operations.getViewElements(this.flowId,this.dataSet,this.primaryColor,this.activeColor,this.inactiveColor)
-    },
-    getKeys(data){
-      if(data){
-        return Object.keys(data)
-      }
-      return []
-    },
     onMouseOverNode(event){
       event.target.setAttributeNS(null, 'r', event.target.getAttributeNS(null,'r')*1.5)
       let node=event.target.getAttribute("class").replace(/node-svg-|node-svg/gi,"").trim()

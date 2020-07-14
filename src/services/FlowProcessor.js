@@ -1,6 +1,6 @@
 class FlowProcessor{
 
-	constructor(startPoint,clubbedNodes){
+	setData(startPoint,clubbedNodes){
 
 		this.dataSet={
 				trees:{},
@@ -14,6 +14,7 @@ class FlowProcessor{
 		this.dataSet.trees[startPoint].next={}
 		this.dataSet.traverse[startPoint]=[]
 		this.dataSet.restructured[startPoint]=[]
+		return this
 	}
 
 
@@ -70,6 +71,4 @@ class FlowProcessor{
 	}
 }
 
-export let getFlowProcessor=(startPoint,clubbedNodes)=>{
-    return new  FlowProcessor(startPoint,clubbedNodes)
-}
+export let flowProcessor = new  FlowProcessor()
