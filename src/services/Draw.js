@@ -92,10 +92,10 @@ class Draw{
 					el["class"]= "arc-svg arc-svg-"+prop.prevNode+" arc-svg-next-"+prop.node;
 					el["ref"]= "arc-svg arc-svg-"+prop.prevNode
 					if(diff==1){
-						el["d"]=`M${fromX},${fromY} L${fromX+distance*2},${fromY}`;
+						el["d"]=`M${fromX+this.sidewaysPadding},${fromY} L${fromX+distance*2+this.sidewaysPadding},${fromY}`;
 					}
 					else{
-						el["d"]=this.describeArc(fromX+distance, fromY,distance,  270,90);
+						el["d"]=this.describeArc(fromX+distance+this.sidewaysPadding, fromY,distance,  270,90);
 					}
 					this.element.data.allArcs.push(el)
 
@@ -104,7 +104,7 @@ class Draw{
 
 					let textBg = {}
 					textBg["type"]='rect'; 
-					textBg['x']=fromX+distance-30;  
+					textBg['x']=fromX+distance-30+this.sidewaysPadding;  
 					textBg['y']=fromY-distance*0.7-10;
 					textBg['rx']=5;
 					textBg['height']="30";  
@@ -120,7 +120,7 @@ class Draw{
 
 					let text = {}
 					text["type"]='text';   
-					text['x']=fromX+distance-20;
+					text['x']=fromX+distance-20+this.sidewaysPadding;
 					text['y']=fromY-distance*0.7+10;
 					text['fill']=this.primaryColor;   
 					text['class']="arc-text-svg arc-text-svg-"+prop.prevNode+" arc-text-svg-next-"+prop.node; 
@@ -158,7 +158,7 @@ class Draw{
 
 			let el = {}
 			el["type"] = 'circle';
-			el['cx']=x+this.eachNodeWidth/2;
+			el['cx']=x+this.eachNodeWidth/2+this.sidewaysPadding;
 			el['cy']=y;
 			el['r']=this.eachNodeWidth;
 			el['class']="node-svg node-svg-"+node;
@@ -177,7 +177,7 @@ class Draw{
 			text["type"]='text';  
 			text['class']="text-svg text-svg-"+node; 
 			text['ref']="text-svg text-svg-"+node; 
-			text['x']=x-node.length*6*0.5;
+			text['x']=x-node.length*6*0.5+this.sidewaysPadding;
 			text['y']=y+this.eachNodeHeight+25;
 			text['fill']=this.primaryColor;
 			text["text"]=  nodeDisplay
