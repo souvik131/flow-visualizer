@@ -28,25 +28,7 @@ class FlowFormatter{
 					}
 				}
 				toBeAdded.forEach((el)=>{
-					let lookUpNode=el.node
-					let indicesShortlisted=[]
-					for(let i=0;i<sortedTraversal.length;i++){
-						let data=sortedTraversal[i]
-						let existingNodes=data.map(prop=>prop.node)
-						let index=existingNodes.indexOf(lookUpNode)
-						if(index>0){
-							indicesShortlisted.push(index)
-						}
-					}
-					if(indicesShortlisted.length>0){
-	
-						let sortedIndices=indicesShortlisted.sort()
-						let minIndex =sortedIndices[0]
-						sortedTraversal[0].splice(minIndex, 0, el);
-					}
-					else{
-						sortedTraversal[0].push(el);
-					}
+					sortedTraversal[0].push(el);
 				});
 
 				let traversalContainer=new Array(longestTraversal.length);
