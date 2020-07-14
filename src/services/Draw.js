@@ -2,10 +2,11 @@ class Draw{
 	setData(id,width,height,ratio,primaryColor,activeColor,inactiveColor,data,startPoint){
 		this.element = {
             data:{}
-        }
+		}
+		this.sidewaysPadding=100
 		this.element.id = id;
 		this.element.height=height+"px"
-		this.element.width=width+200+"px"
+		this.element.width=width+this.sidewaysPadding*2+"px"
 		this.width = width;
 		this.height = height;
 		this.nodeMap = {}
