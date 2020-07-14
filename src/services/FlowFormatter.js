@@ -30,7 +30,8 @@ class FlowFormatter{
 				toBeAdded.forEach((el)=>{
 					let lookUpNode=el.node
 					let indicesShortlisted=[]
-					for(let data of sortedTraversal){
+					for(let i=0;i<sortedTraversal.length;i++){
+						let data=sortedTraversal[i]
 						let existingNodes=data.map(prop=>prop.node)
 						let index=existingNodes.indexOf(lookUpNode)
 						if(index>0){
