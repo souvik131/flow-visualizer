@@ -97,7 +97,6 @@ class FlowFormatter{
 			let processor = flowProcessor.setData(startPoint,clubbedNodes)
 			this.packagedOutput=processor.start().dataSet
 		})
-		console.log(this.packagedOutput)
 		this.restructureData()
 		return this
 	}
