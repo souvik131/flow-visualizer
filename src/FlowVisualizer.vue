@@ -3,7 +3,7 @@
 <div >
   
     <div v-for="(dataPoint,idx) in drawData.dataPoints" :key="idx+'flow-visualizer'" >
-         <svg :height=drawData.dataPoints[idx].height :width=drawData.dataPoints[idx].width >
+         <svg :viewBox=drawData.dataPoints[idx].viewBox >
 
           <path v-for="(arc,i) in drawData.dataPoints[idx].data.allArcs" 
           :key="i+'-arc'" 

@@ -7,6 +7,7 @@ class Draw{
 		this.element.id = id;
 		this.element.height=height+"px"
 		this.element.width=width+this.sidewaysPadding*2+"px"
+		this.element.viewBox=`0 0 ${this.element.width} ${this.element.height}`
 		this.width = width;
 		this.height = height;
 		this.nodeMap = {}
